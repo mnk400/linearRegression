@@ -1,33 +1,17 @@
-import errorGradient
-import euclideanGradient
-import wML
+from LRmodule import errorGradient, euclideanGradient, wML
+from rsquare import r2
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from sklearn.datasets import make_regression as mr
 
-FEATURES = 1000
+FEATURES = 1
 DATAPOINTS = 1000
 NOISE = 10
 ITERATIONS = 1
 
-def r2cal(y_p,y):
-        #Method to calculate r2cal
-        y_mean = y.mean()
-        # y_mean = np.full(10000, [y.mean()])
-        sst = 0
-        ssreg = 0
-
-        for i in range(DATAPOINTS):
-            sst = sst + (y[i] - y_mean)**2
-
-        for i in range(DATAPOINTS):
-            ssreg = ssreg + (y_p[i] - y[i])**2
-
-        rsquared = 1 - (ssreg/sst)
-        return rsquared
-
 if __name__ == "__main__":
     i = 0
+    r = r2.r2()
     print("Features: " + str(FEATURES) + " Datapoints: " + str(DATAPOINTS) + " Noise: " + str(NOISE)  + " Datasets: " + str(ITERATIONS))
     while i<ITERATIONS:
         i = i +1
@@ -50,9 +34,9 @@ if __name__ == "__main__":
         #Predicting
         weights_ml, predicted_y_ml = ml.run()
 
-        print("R-Square value for Error Gradient for " + str(i) + "st run" + str(r2cal(predicted_y,y)))
-        print("R-Square value for Euclidean Gradient for " + str(i) + "st run" + str(r2cal(predicted_y_eu,y)))
-        print("R-Square value for Maximum Likelihood for " + str(i) + "st run" + str(r2cal(predicted_y_ml,y)))
+        print("R-Square value for Error Gradient for " + str(i) + "st run" + str(r.calculate(predicted_y,y)))
+        print("R-Square value for Euclidean Gradient for " + str(i) + "st run" + str(r.calculate(predicted_y_eu,y)))
+        print("R-Square value for Maximum Likelihood for " + str(i) + "st run" + str(r.calculate(predicted_y_ml,y)))
     
 
     if FEATURES == 1 and ITERATIONS == 1:
@@ -72,9 +56,9 @@ if __name__ == "__main__":
         ax1.plot(x, predicted_y, color ="red")
         ax2.plot(x, predicted_y_eu, color ="slateblue")
         ax3.plot(x, predicted_y_ml, color ="green")
-        red_patch = mpatches.Patch(color="red", label = "Sum of squared errors \nr-Square: " +str(r2cal(predicted_y,y)) )
-        blue_patch = mpatches.Patch(color="slateblue", label = "Sum of squared Euclidian distances\nr-Square: " +str(r2cal(predicted_y_eu,y)))
-        green_patch = mpatches.Patch(color="green", label = "Minimizing sum of squared errors\nr-Square: " +str(r2cal(predicted_y_ml,y)))
+        red_patch = mpatches.Patch(color="red", label = "Sum of squared errors \nr-Square: " +str(r.calculate(predicted_y,y)) )
+        blue_patch = mpatches.Patch(color="slateblue", label = "Sum of squared Euclidian distances\nr-Square: " +str(r.calculate(predicted_y_eu,y)))
+        green_patch = mpatches.Patch(color="green", label = "Minimizing sum of squared errors\nr-Square: " +str(r.calculate(predicted_y_ml,y)))
         ax1.legend(handles = [red_patch])
         ax2.legend(handles = [blue_patch])
         ax3.legend(handles = [green_patch])
