@@ -3,7 +3,9 @@ Solving the linear regression problem using various techniques.
 
 - ### Ordinary Least Squares 
 Minimizing the square differences between values of estimated Y and observed Y. Solved using gradient descent, update rule is as following.
+
 ![](img/OLS.png)
+
 Code accepts a dataset matrix(which can be multidimensional), a targets matrix(only supports single dimensional targets) and returns a vector of weights and a matrix of predicted Y's.
 ```Python
 from LRmodule import errorGradient
@@ -13,7 +15,9 @@ weights, predicted_y = regression.run()
 
 - ### Minimizing Euclidean Distances | Total Least Squares 
 Minimizing the square of Euclidean Distances between the data-points and the hypderplane, a form of Total Least Squares. Solved using gradient descent, update rule is as following.
+
 ![](img/EUC.png)
+
 Code has the same properties as before.
 ```Python
 from LRmodule import euclideanGradient
@@ -23,7 +27,9 @@ weights, predicted_y = regression.run()
 
 - ### Maximum Likelihood
 Forming a closed form solution by calculating maximum liklihood from the log-liklihood of the sum of squared errors. Weights are be calculated accordign to the formula below.
+
 ![](img/WML.png)
+
 Code has the same properties as before.
 ```Python
 from LRmodule import wML
