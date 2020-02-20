@@ -14,7 +14,7 @@ weights, predicted_y = regression.run()
 ```
 
 - ### Minimizing Euclidean Distances | Total Least Squares 
-Minimizing the square of Euclidean Distances between the data-points and the hypderplane, a form of Total Least Squares. Solved using gradient descent, update rule is as following.
+Minimizing the square of Euclidean Distances between the data-points and the hyperplane, a form of Total Least Squares. Solved using gradient descent, update rule is as following.
 
 ![](img/EUC.png)
 
@@ -26,7 +26,7 @@ weights, predicted_y = regression.run()
 ```
 
 - ### Maximum Likelihood
-Forming a closed form solution by calculating maximum liklihood from the log-liklihood of the sum of squared errors. Weights are be calculated accordign to the formula below.
+Forming a closed form solution by calculating maximum likelihood from the log-likelihood of the sum of squared errors. Weights are be calculated according to the formula below.
 
 ![](img/WML.png)
 
@@ -38,7 +38,7 @@ weights, predicted_y = regression.run()
 ```
 
 - #### Calculating R-Squared
-Repository also contains a module to calcuale r-squared with.
+Repository also contains a module to calculate r-squared with.
 ```Python
 from rsquare import r2
 r = r2.r2()
