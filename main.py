@@ -6,7 +6,7 @@ from sklearn.datasets import make_regression as mr
 
 FEATURES = 1
 DATAPOINTS = 1000
-NOISE = 10
+NOISE = 20
 ITERATIONS = 1
 
 if __name__ == "__main__":

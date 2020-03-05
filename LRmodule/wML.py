@@ -6,12 +6,19 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 
 class WML(object):
-    
+    '''
+    Class to solve a linear regression problem using 
+    calculating the maximum likelihood and solving for weights
+    '''
+
     plotFlag = True
     tolerance = 0.00000001
     
 
     def __init__(self,x_without_ones,y,d):
+        '''
+        Constructor
+        '''
         self.DATAPOINTS = d
         self.x_without_ones = x_without_ones
         self.y = y
@@ -21,10 +28,16 @@ class WML(object):
         self.w = np.random.uniform(low=-1.0,high=4.0,size=(len(self.x[0]),1))
 
     def generateDistribution(self):
+        '''
+        Function to append a column of ones to our input and init'ing the distribution
+        '''
         self.ones = np.ones((self.DATAPOINTS,1))
         self.x = np.concatenate([self.ones, self.x_without_ones], 1)
 
     def run(self):
+        '''
+        Function to run the algorithm 
+        '''
         i = 0
         w = self.w
         k = 99.99
