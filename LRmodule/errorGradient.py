@@ -1,9 +1,7 @@
 from numpy import genfromtxt
 import numpy as np
 from time import sleep
-from sklearn.datasets import make_regression as mr
-import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
+
 
 class ErrorGradient(object):
     '''
@@ -12,16 +10,17 @@ class ErrorGradient(object):
     and the predicted value of y component.
     '''
 
-    plotFlag = True
-    tolerance = 0.00000001
+
     
 
-    def __init__(self,x_without_ones,y,d):
+    def __init__(self,x_without_ones,y, verbose = False, tolerance = 0.00000001):
         '''
         Constructor
         '''
-        self.DATAPOINTS = d
+        self.verb = verbose
+        self.DATAPOINTS = len(y)
         self.x_without_ones = x_without_ones
+        self.tolerance = tolerance
         self.y = y
         self.generateDistribution()
         self.y = np.array([self.y])
@@ -30,7 +29,7 @@ class ErrorGradient(object):
 
     def generateDistribution(self):
         '''
-        Function to append a column of ones to our input and init'ing the distribution
+        Function to append a column of ones to our input and initialzing the distribution
         '''
         self.ones = np.ones((self.DATAPOINTS,1))
         self.x = np.concatenate([self.ones, self.x_without_ones], 1)
@@ -44,6 +43,11 @@ class ErrorGradient(object):
         k = 99.99
         while k > self.tolerance:
             i = i + 1
+
+            if self.verb == True:
+                print("Iteration " + str(i))
+
+
             #Calculate gradient
             gradient = (np.dot(np.linalg.inv(np.dot(np.transpose(self.x),self.x)),(np.dot(np.transpose(self.x),(np.dot(self.x,w) - self.y)))))
             w_new = w - 0.3*gradient

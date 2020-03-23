@@ -15,11 +15,11 @@ class WML(object):
     tolerance = 0.00000001
     
 
-    def __init__(self,x_without_ones,y,d):
+    def __init__(self,x_without_ones,y):
         '''
         Constructor
         '''
-        self.DATAPOINTS = d
+        self.DATAPOINTS = len(y)
         self.x_without_ones = x_without_ones
         self.y = y
         self.generateDistribution()
@@ -40,7 +40,6 @@ class WML(object):
         '''
         i = 0
         w = self.w
-        k = 99.99
         w_ml = np.linalg.inv(self.x.T.dot(self.x)).dot(self.x.T.dot(self.y))
         y_plt = np.dot(self.x,w_ml)
         return w_ml, y_plt

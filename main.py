@@ -15,22 +15,26 @@ if __name__ == "__main__":
     print("Features: " + str(FEATURES) + " Datapoints: " + str(DATAPOINTS) + " Noise: " + str(NOISE)  + " Datasets: " + str(ITERATIONS))
     while i<ITERATIONS:
         i = i +1
-        print(i)
+        print("For Dataset: " +str(i))
+
         #generating regression example
         x, y = mr(n_samples = DATAPOINTS, n_features = FEATURES, n_informative= 1, n_targets= 1, noise = NOISE)
         
         #Instance for error squared class
-        error = errorGradient.ErrorGradient(x,y,DATAPOINTS)
+        print("Calculating errorGradient")
+        error = errorGradient.ErrorGradient(x,y, verbose=False)
         #Predicting
         weights_er, predicted_y = error.run()
         
         #Instance for squared euclidean class
-        euc = euclideanGradient.EuclideanGradient(x,y,DATAPOINTS)
+        print("Calculating euclideanGradient")
+        euc = euclideanGradient.EuclideanGradient(x,y, verbose=True)
         #Predicting
         weights_eu, predicted_y_eu = euc.run()
 
         #Instance for squared euclidean class
-        ml = wML.WML(x,y,DATAPOINTS)
+        print("Calculating Maximum likelihood")
+        ml = wML.WML(x,y)
         #Predicting
         weights_ml, predicted_y_ml = ml.run()
 
