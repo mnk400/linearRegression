@@ -6,7 +6,7 @@ from sklearn.datasets import make_regression as mr
 
 FEATURES = 1
 DATAPOINTS = 1000
-NOISE = 20
+NOISE = 30
 ITERATIONS = 1
 
 if __name__ == "__main__":
@@ -20,6 +20,8 @@ if __name__ == "__main__":
         #generating regression example
         x, y = mr(n_samples = DATAPOINTS, n_features = FEATURES, n_informative= 1, n_targets= 1, noise = NOISE)
         
+        print(x)
+        #sleep(100)
         #Instance for error squared class
         print("Calculating errorGradient")
         error = errorGradient.ErrorGradient(x,y, verbose=False)

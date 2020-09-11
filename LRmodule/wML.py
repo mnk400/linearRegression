@@ -22,9 +22,10 @@ class WML(object):
         self.DATAPOINTS = len(y)
         self.x_without_ones = x_without_ones
         self.y = y
+        print(self.y)
         self.generateDistribution()
-        self.y = np.array([self.y])
-        self.y = self.y.T
+        #self.y = np.array([self.y])
+        #self.y = self.y.T
         self.w = np.random.uniform(low=-1.0,high=4.0,size=(len(self.x[0]),1))
 
     def generateDistribution(self):
@@ -32,7 +33,9 @@ class WML(object):
         Function to append a column of ones to our input and init'ing the distribution
         '''
         self.ones = np.ones((self.DATAPOINTS,1))
+        print(self.x_without_ones)
         self.x = np.concatenate([self.ones, self.x_without_ones], 1)
+        print(self.x)
 
     def run(self):
         '''
